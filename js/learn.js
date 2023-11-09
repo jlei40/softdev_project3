@@ -9,9 +9,13 @@ let roundsPlayed = 0;
 let currentRound = 0;
 let totalRounds = 0;
 
+// make it so total rounds is only odd numbers and disable the button if not maybe
+
 startButton.addEventListener("click", function () {
     totalRounds = prompt("Enter the number of rounds (odd number):");
     totalRounds = parseInt(totalRounds);
+
+
 
     if (totalRounds % 2 !== 0 && totalRounds >= 1) {
         rollButton.disabled = false;
@@ -23,6 +27,7 @@ startButton.addEventListener("click", function () {
     }
 });
 
+// dice roll function
 rollButton.addEventListener("click", function () {
     console.log("Dice is rolling...");
     let diceroll = Math.floor(Math.random() * 6) + 1;
@@ -43,6 +48,8 @@ rollButton.addEventListener("click", function () {
     }
 });
 
+// function for score ig maybe we can make it better later
+
 function endRound() {
     roundsPlayed++;
 
@@ -61,6 +68,7 @@ function endRound() {
     }
 }
 
+// reset after everything is done
 function resetRound() {
     currentRound = 1;
     document.getElementById("currentRound").innerText = currentRound;
@@ -73,5 +81,5 @@ function resetRound() {
 function endGame() {
     let winner = p1rounds > p2rounds ? "Player 1" : "Player 2";
     alert("Game Over! " + winner + " wins!");
-    location.reload(); // Reload the page to start a new game
+    location.reload();
 }
