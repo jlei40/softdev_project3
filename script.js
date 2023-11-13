@@ -24,31 +24,50 @@ function startGame() {
     gameStarted = true;
     document.getElementById('rollDiceBtn').removeAttribute('disabled');
     totalRounds = prompt('Enter an odd number of rounds:');
-    if (totalRounds % 2 == 0) prompt('Enter an odd number of rounds:');
+
+
+    while (totalRounds % 2 === 0) {
+        totalRounds = prompt('Please enter an odd number of rounds:');
+    }
+
     alert("Roll to see who goes first!");
+
+
+    p1score = 0;
+    p2score = 0;
+
+    firstPlayerRolled = false;
+    secondPlayerRolled = false;
+
+    currentRound = 1;
+    bothPlayers = 0;
+
+    die = [0, 0, 0];
+
+    // Reset diceroll flags
+    diceroll1 = true;
+    diceroll2 = false;
+    diceroll3 = false;
+
     updateUI();
 }
 
 
 function rollDice(){
-    
     if (!gameStarted){
         alert("Please start the game first!"); 
     }
     else if (firstrolling && !firstPlayerRolled){
-        for (let i in die){
-            die[i] = Math.floor(Math.random() * 6) + 1;
-            p1score += die[i]; 
-        }
+        // Roll one die for the first player
+        die[0] = Math.floor(Math.random() * 6) + 1;
+        p1score += die[0]; 
         firstPlayerRolled = true;
     } else if (firstrolling && !secondPlayerRolled){
-        for (let i in die){
-            die[i] = Math.floor(Math.random() * 6) + 1;
-            p2score += die[i]; 
-        }
+        // Roll one die for the second player
+        die[0] = Math.floor(Math.random() * 6) + 1;
+        p2score += die[0]; 
 
         updateUI();
-
         secondPlayerRolled = true; 
 
         if (p1score > p2score){
