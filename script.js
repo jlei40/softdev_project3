@@ -203,4 +203,3 @@ function updateUI(){
     document.getElementById('totalRounds').innerText = totalRounds;
     document.getElementById('currentPlayer').innerText = currentPlayer;
 }
-
